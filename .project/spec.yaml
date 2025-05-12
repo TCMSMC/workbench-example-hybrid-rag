@@ -94,7 +94,7 @@ execution:
             url_command: jupyter lab list 2>&1 | head -n 2 | tail -n 1 | cut -f1 -d' ' | grep -v 'Currently'
     resources:
         gpu:
-            requested: 1
+            requested: 0
         sharedMemoryMB: 4096
     secrets:
         - variable: NVCF_RUN_KEY
@@ -111,4 +111,8 @@ execution:
         - type: volume
           target: /mnt/milvus/
           description: Volume for storing the milvus database
+          options: ""
+        - type: host
+          target: /var/host-run/docker.sock/
+          description: Podman API Socket
           options: ""
